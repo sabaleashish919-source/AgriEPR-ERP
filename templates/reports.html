@@ -1,0 +1,106 @@
+{% include 'header.html' %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+
+        <h1>Business Reports</h1>
+
+        <p>Business summary and statistics.</p>
+
+    </div>
+
+    <div class="dashboard-cards">
+
+        <div class="dashboard-card">
+            <i class="fas fa-box"></i>
+            <h2>{{ total_products }}</h2>
+            <p>Total Products</p>
+        </div>
+
+        <div class="dashboard-card">
+            <i class="fas fa-users"></i>
+            <h2>{{ total_customers }}</h2>
+            <p>Total Customers</p>
+        </div>
+
+        <div class="dashboard-card">
+            <i class="fas fa-truck"></i>
+            <h2>{{ total_suppliers }}</h2>
+            <p>Total Suppliers</p>
+        </div>
+
+        <div class="dashboard-card">
+            <i class="fas fa-cart-plus"></i>
+            <h2>{{ total_purchases }}</h2>
+            <p>Total Purchases</p>
+        </div>
+
+        <div class="dashboard-card">
+            <i class="fas fa-cash-register"></i>
+            <h2>{{ total_sales }}</h2>
+            <p>Total Sales</p>
+        </div>
+
+        <div class="dashboard-card">
+            <i class="fas fa-wallet"></i>
+            <h2>₹{{ "%.2f"|format(total_revenue) }}</h2>
+            <p>Total Revenue</p>
+        </div>
+
+    </div>
+
+    <div class="profile-card">
+
+        <h2>Report Summary</h2>
+
+        <table class="customer-table">
+
+            <tr>
+                <th>Category</th>
+                <th>Value</th>
+            </tr>
+
+            <tr>
+                <td>Total Products</td>
+                <td>{{ total_products }}</td>
+            </tr>
+
+            <tr>
+                <td>Total Customers</td>
+                <td>{{ total_customers }}</td>
+            </tr>
+
+            <tr>
+                <td>Total Suppliers</td>
+                <td>{{ total_suppliers }}</td>
+            </tr>
+
+            <tr>
+                <td>Total Purchases</td>
+                <td>{{ total_purchases }}</td>
+            </tr>
+
+            <tr>
+                <td>Total Sales</td>
+                <td>{{ total_sales }}</td>
+            </tr>
+
+            <tr>
+                <td>Total Revenue</td>
+                <td>₹{{ "%.2f"|format(total_revenue) }}</td>
+            </tr>
+
+        </table>
+
+        <br>
+
+        <a href="{{ url_for('dashboard.home') }}" class="login-btn">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

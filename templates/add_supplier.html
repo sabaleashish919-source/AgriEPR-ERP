@@ -1,0 +1,67 @@
+{% include 'header.html' %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>Add Supplier</h1>
+        <p>Register a new supplier.</p>
+    </div>
+
+    <div class="profile-card">
+
+        <form method="POST">
+
+            <div class="input-group">
+                <input
+                    type="text"
+                    name="supplier_name"
+                    placeholder="Supplier Name"
+                    required>
+            </div>
+
+            <div class="input-group">
+                <input
+                    type="text"
+                    name="mobile"
+                    placeholder="Mobile Number">
+            </div>
+
+            <div class="input-group">
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email">
+            </div>
+
+            <div class="input-group">
+                <textarea
+                    name="address"
+                    rows="4"
+                    placeholder="Supplier Address"
+                    style="width:100%;padding:15px;"></textarea>
+            </div>
+
+            <div class="input-group">
+                <input
+                    type="text"
+                    name="gst_number"
+                    placeholder="GST Number">
+            </div>
+
+            <br>
+
+            <button type="submit" class="login-btn">
+
+                <i class="fas fa-save"></i>
+
+                Save Supplier
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

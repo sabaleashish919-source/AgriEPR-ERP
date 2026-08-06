@@ -1,0 +1,72 @@
+{% include 'header.html' %}
+
+<div class="dashboard-container">
+
+    <div class="profile-card">
+
+        <h2>Invoice</h2>
+
+        <hr>
+
+        <p><strong>Invoice No:</strong> {{ invoice.invoice_number }}</p>
+
+        <p><strong>Date:</strong> {{ invoice.created_at.strftime("%d-%m-%Y") }}</p>
+
+        <p><strong>Customer:</strong> {{ invoice.customer.customer_name }}</p>
+
+        <hr>
+
+        <table class="customer-table">
+
+            <thead>
+
+                <tr>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for item in invoice.items %}
+
+                <tr>
+
+                    <td>{{ item.product.name }}</td>
+
+                    <td>{{ item.quantity }}</td>
+
+                    <td>₹{{ "%.2f"|format(item.price) }}</td>
+
+                    <td>₹{{ "%.2f"|format(item.total) }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <br>
+
+        <h3 style="text-align:right;">
+            Grand Total :
+            ₹{{ "%.2f"|format(invoice.grand_total) }}
+        </h3>
+
+        <br>
+
+        <button onclick="window.print()" class="login-btn">
+            <i class="fas fa-print"></i>
+            Print Invoice
+        </button>
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

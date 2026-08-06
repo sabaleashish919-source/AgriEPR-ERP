@@ -1,0 +1,69 @@
+{% include 'header.html' %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>Purchases</h1>
+        <p>Manage all your purchases.</p>
+    </div>
+
+    <div class="profile-card">
+
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+
+            <h2>Purchase List</h2>
+
+            <a href="{{ url_for('purchases.add_purchase') }}" class="action-btn">
+                <i class="fas fa-plus"></i>
+                Add Purchase
+            </a>
+
+        </div>
+
+        <br>
+
+        <table class="customer-table">
+
+            <thead>
+                <tr>
+                    <th>Supplier</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for purchase in purchases %}
+
+                <tr>
+                    <td>{{ purchase.supplier_name }}</td>
+                    <td>{{ purchase.product.name }}</td>
+                    <td>{{ purchase.quantity }}</td>
+                    <td>₹{{ purchase.purchase_price }}</td>
+                    <td>₹{{ purchase.total_amount }}</td>
+                    <td>{{ purchase.purchase_date.strftime('%d-%m-%Y') }}</td>
+                </tr>
+
+                {% else %}
+
+                <tr>
+                    <td colspan="6" style="text-align:center;padding:30px;">
+                        No purchases found.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

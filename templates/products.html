@@ -1,0 +1,209 @@
+{% include 'header.html' %}
+
+<div class="dashboard-container">
+
+    <!-- Header -->
+
+    <div class="dashboard-header">
+
+        <h1>📦 Product Management</h1>
+
+        <p>Manage your inventory, stock and pricing.</p>
+
+    </div>
+
+
+    <!-- Statistics -->
+
+    <div class="dashboard-cards">
+
+        <div class="dashboard-card">
+
+            <i class="fas fa-box"></i>
+
+            <h2>{{ products|length }}</h2>
+
+            <p>Total Products</p>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <i class="fas fa-exclamation-triangle"></i>
+
+            <h2>
+                {{ products|selectattr('quantity','lt',10)|list|length }}
+            </h2>
+
+            <p>Low Stock</p>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <i class="fas fa-layer-group"></i>
+
+            <h2>
+                {{ products|sum(attribute='quantity') }}
+            </h2>
+
+            <p>Total Stock</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Product List -->
+
+    <div class="profile-card">
+
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;">
+
+            <h2>Inventory</h2>
+
+            <form method="GET" action="{{ url_for('products.product_list') }}">
+
+                <input type="text" name="search" value="{{ search }}" placeholder="Search Product..."
+                    style="padding:10px 15px;border-radius:8px;border:1px solid #ccc;">
+
+                <button class="login-btn" style="padding:10px 18px;">
+                    Search
+                </button>
+
+            </form>
+
+            <a href="{{ url_for('products.add_product') }}" class="action-btn">
+
+                <i class="fas fa-plus-circle"></i>
+
+                <br><br>
+
+                Add Product
+
+            </a>
+
+        </div>
+
+        <br>
+
+        <table class="customer-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Product</th>
+
+                    <th>Category</th>
+
+                    <th>Purchase Price</th>
+
+                    <th>Selling Price</th>
+
+                    <th>Stock</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% if products %}
+
+                {% for product in products %}
+
+                <tr>
+
+                    <td>{{ product.id }}</td>
+
+                    <td>{{ product.name }}</td>
+
+                    <td>{{ product.category }}</td>
+
+                    <td>₹{{ product.purchase_price }}</td>
+
+                    <td>₹{{ product.selling_price }}</td>
+
+                    <td>
+
+                        {% if product.quantity == 0 %}
+
+                        <span class="badge badge-danger">
+                            Out of Stock
+                        </span>
+
+                        {% elif product.quantity < 10 %} <span class="badge badge-warning">
+                            {{ product.quantity }} Left
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge badge-success">
+                                {{ product.quantity }} In Stock
+                            </span>
+
+                            {% endif %}
+
+                    <td>
+
+                        <a href="{{ url_for('products.edit_product', id=product.id) }}" class="action-btn"
+                            style="padding:8px 12px;display:inline-block;">
+
+                            <i class="fas fa-edit"></i>
+
+                        </a>
+
+                        <a href="{{ url_for('products.delete_product', id=product.id) }}" class="action-btn"
+                            style="background:#dc3545;padding:8px 12px;display:inline-block;"
+                            onclick="return confirm('Delete this product?')">
+
+                            <i class="fas fa-trash"></i>
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+                {% else %}
+
+                <tr>
+
+                    <td colspan="7" style="text-align:center;padding:50px;">
+
+                        <i class="fas fa-box-open" style="font-size:50px;color:#999;"></i>
+
+                        <br><br>
+
+                        No products available.
+
+                        <br><br>
+
+                        <a href="{{ url_for('products.add_product') }}" class="action-btn">
+
+                            Add Your First Product
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endif %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

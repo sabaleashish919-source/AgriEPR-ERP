@@ -1,0 +1,196 @@
+{% include 'header.html' %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+
+        <h1>Create New Bill</h1>
+
+        <p>Create invoices and manage customer sales.</p>
+
+    </div>
+
+    <div class="profile-card">
+
+        <form method="POST">
+
+            <!-- Customer -->
+
+            <div class="input-group">
+
+                <label><strong>Customer</strong></label>
+
+                <select
+                    name="customer"
+                    class="form-control"
+                    required>
+
+                    <option value="">Select Customer</option>
+
+                    {% for customer in customers %}
+
+                    <option value="{{ customer.id }}">
+                        {{ customer.customer_name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <br>
+
+            <!-- Product -->
+
+            <div class="input-group">
+
+                <label><strong>Product</strong></label>
+
+                <select
+                    id="product"
+                    name="product"
+                    class="form-control"
+                    required>
+
+                    <option value="">Select Product</option>
+
+                    {% for product in products %}
+
+                    <option
+                        value="{{ product.id }}"
+                        data-price="{{ product.selling_price }}"
+                        data-stock="{{ product.quantity }}">
+
+                        {{ product.name }}
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <br>
+
+            <!-- Stock -->
+
+            <div class="input-group">
+
+                <label><strong>Available Stock</strong></label>
+
+                <input
+                    type="text"
+                    id="stock"
+                    class="form-control"
+                    readonly>
+
+            </div>
+
+            <br>
+
+            <!-- Price -->
+
+            <div class="input-group">
+
+                <label><strong>Selling Price (₹)</strong></label>
+
+                <input
+                    type="text"
+                    id="price"
+                    class="form-control"
+                    readonly>
+
+            </div>
+
+            <br>
+
+            <!-- Quantity -->
+
+            <div class="input-group">
+
+                <label><strong>Quantity</strong></label>
+
+                <input
+                    type="number"
+                    id="quantity"
+                    name="quantity"
+                    class="form-control"
+                    min="1"
+                    value="1"
+                    required>
+
+            </div>
+
+            <br>
+
+            <!-- Total -->
+
+            <div class="input-group">
+
+                <label><strong>Total Amount (₹)</strong></label>
+
+                <input
+                    type="text"
+                    id="total"
+                    class="form-control"
+                    readonly>
+
+            </div>
+
+            <br>
+
+            <button
+                type="submit"
+                class="login-btn">
+
+                <i class="fas fa-cart-plus"></i>
+
+                Add To Bill
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+const product = document.getElementById("product");
+const quantity = document.getElementById("quantity");
+
+function calculateTotal(){
+
+    const option = product.options[product.selectedIndex];
+
+    if(option.value === ""){
+
+        document.getElementById("price").value = "";
+        document.getElementById("stock").value = "";
+        document.getElementById("total").value = "";
+
+        return;
+
+    }
+
+    const price = parseFloat(option.dataset.price);
+    const stock = parseInt(option.dataset.stock);
+
+    document.getElementById("price").value = price.toFixed(2);
+    document.getElementById("stock").value = stock;
+
+    const total = price * parseInt(quantity.value || 1);
+
+    document.getElementById("total").value = total.toFixed(2);
+
+}
+
+product.addEventListener("change", calculateTotal);
+quantity.addEventListener("input", calculateTotal);
+
+</script>
+
+{% include 'footer.html' %}

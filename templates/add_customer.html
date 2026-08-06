@@ -1,0 +1,81 @@
+{% include 'header.html' %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+
+        <h1>Add Customer</h1>
+
+        <p>Register a new customer.</p>
+
+    </div>
+
+    <div class="profile-card">
+
+        <form method="POST">
+
+            <div class="input-group">
+
+                <input
+                    type="text"
+                    name="customer_name"
+                    placeholder="Customer Name"
+                    required>
+
+            </div>
+
+            <div class="input-group">
+
+                <input
+                    type="text"
+                    name="mobile"
+                    placeholder="Mobile Number"
+                    required>
+
+            </div>
+
+            <div class="input-group">
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address">
+
+            </div>
+
+            <div class="input-group">
+
+                <textarea
+                    name="address"
+                    placeholder="Customer Address"
+                    rows="4"
+                    style="width:100%;padding:15px;border:none;outline:none;"></textarea>
+
+            </div>
+
+            <div class="input-group">
+
+                <input
+                    type="text"
+                    name="gst_number"
+                    placeholder="GST Number (Optional)">
+
+            </div>
+
+            <br>
+
+            <button
+                type="submit"
+                class="login-btn">
+
+                Save Customer
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

@@ -1,0 +1,209 @@
+{% include 'header.html' %}
+
+<div class="dashboard-container">
+
+    <!-- Dashboard Header -->
+
+    <div class="dashboard-header">
+
+        <h1>Welcome, {{ user.full_name }} 👋</h1>
+
+        <p>
+            Manage your inventory, purchases, sales and business from one place.
+        </p>
+
+    </div>
+
+
+    <!-- Statistics -->
+
+    <!-- Statistics -->
+
+<div class="dashboard-cards">
+
+    <div class="dashboard-card">
+        <i class="fas fa-box"></i>
+        <h2>{{ total_products }}</h2>
+        <p>Total Products</p>
+    </div>
+
+    <div class="dashboard-card">
+        <i class="fas fa-users"></i>
+        <h2>{{ total_customers }}</h2>
+        <p>Customers</p>
+    </div>
+
+    <div class="dashboard-card">
+        <i class="fas fa-truck"></i>
+        <h2>{{ total_suppliers }}</h2>
+        <p>Suppliers</p>
+    </div>
+
+    <div class="dashboard-card">
+        <i class="fas fa-cart-plus"></i>
+        <h2>{{ total_purchases }}</h2>
+        <p>Purchases</p>
+    </div>
+
+    <div class="dashboard-card">
+        <i class="fas fa-cash-register"></i>
+        <h2>{{ total_sales }}</h2>
+        <p>Sales</p>
+    </div>
+
+    <div class="dashboard-card">
+        <i class="fas fa-wallet"></i>
+        <h2>₹{{ "%.2f"|format(total_revenue) }}</h2>
+        <p>Total Revenue</p>
+    </div>
+
+    <div class="dashboard-card">
+        <i class="fas fa-chart-line"></i>
+        <h2>₹{{ "%.2f"|format(profit) }}</h2>
+        <p>Estimated Profit</p>
+    </div>
+
+    <div class="dashboard-card">
+        <i class="fas fa-exclamation-triangle"></i>
+        <h2>{{ low_stock }}</h2>
+        <p>Low Stock Items</p>
+    </div>
+
+</div>
+
+
+    <!-- Shop Information -->
+
+    <div class="profile-card">
+
+        <h2>
+            <i class="fas fa-store"></i>
+            Shop Information
+        </h2>
+
+        <div class="profile-item">
+            <span>Owner</span>
+            <span>{{ user.full_name }}</span>
+        </div>
+
+        <div class="profile-item">
+            <span>Username</span>
+            <span>{{ user.username }}</span>
+        </div>
+
+        <div class="profile-item">
+            <span>Email</span>
+            <span>{{ user.email }}</span>
+        </div>
+
+        <div class="profile-item">
+            <span>Mobile</span>
+            <span>{{ user.mobile }}</span>
+        </div>
+
+        <div class="profile-item">
+            <span>Shop Name</span>
+            <span>{{ user.shop_name }}</span>
+        </div>
+
+        <div class="profile-item">
+            <span>Address</span>
+            <span>{{ user.shop_address }}</span>
+        </div>
+
+    </div>
+
+
+   <!-- Quick Actions -->
+
+<div class="quick-actions">
+
+    <a href="{{ url_for('products.product_list') }}" class="action-btn">
+        <i class="fas fa-box-open"></i>
+        <br><br>
+        Products
+    </a>
+
+    <a href="{{ url_for('customers.customer_list') }}" class="action-btn">
+        <i class="fas fa-users"></i>
+        <br><br>
+        Customers
+    </a>
+
+    <a href="{{ url_for('suppliers.supplier_list') }}" class="action-btn">
+        <i class="fas fa-truck"></i>
+        <br><br>
+        Suppliers
+    </a>
+
+    <a href="{{ url_for('purchases.purchase_list') }}" class="action-btn">
+        <i class="fas fa-cart-plus"></i>
+        <br><br>
+        Purchases
+    </a>
+
+    <a href="{{ url_for('sales.sale_list') }}" class="action-btn">
+        <i class="fas fa-cash-register"></i>
+        <br><br>
+        Sales
+    </a>
+
+    <a href="{{ url_for('reports.report_list') }}" class="action-btn">
+        <i class="fas fa-chart-pie"></i>
+        <br><br>
+        Reports
+    </a>
+
+    <a href="{{ url_for('auth.logout') }}" class="action-btn">
+        <i class="fas fa-right-from-bracket"></i>
+        <br><br>
+        Logout
+    </a>
+
+</div>
+
+
+    <!-- Recent Activity -->
+
+    <div class="profile-card">
+
+        <h2>
+            <i class="fas fa-clock"></i>
+            Recent Activity
+        </h2>
+
+        <table class="customer-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Date</th>
+                    <th>Activity</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td colspan="3" style="text-align:center;padding:35px;">
+
+                        No recent activity available.
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

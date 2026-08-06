@@ -1,0 +1,114 @@
+{% include 'header.html' %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+
+        <h1>Add Purchase</h1>
+
+        <p>Record new stock purchased from suppliers.</p>
+
+    </div>
+
+    <div class="profile-card">
+
+        <form method="POST">
+
+            <!-- Supplier -->
+
+            <div class="input-group">
+
+                <label><strong>Supplier</strong></label>
+
+                <select name="supplier" class="form-control" required>
+
+                    <option value="">Select Supplier</option>
+
+                    {% for supplier in suppliers %}
+
+                    <option value="{{ supplier.supplier_name }}">
+                        {{ supplier.supplier_name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <br>
+
+            <!-- Product -->
+
+            <div class="input-group">
+
+                <label><strong>Product</strong></label>
+
+                <select name="product" class="form-control" required>
+
+                    <option value="">Select Product</option>
+
+                    {% for product in products %}
+
+                    <option value="{{ product.id }}">
+                        {{ product.name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <br>
+
+            <!-- Quantity -->
+
+            <div class="input-group">
+
+                <label><strong>Quantity</strong></label>
+
+                <input
+                    type="number"
+                    name="quantity"
+                    class="form-control"
+                    min="1"
+                    required>
+
+            </div>
+
+            <br>
+
+            <!-- Purchase Price -->
+
+            <div class="input-group">
+
+                <label><strong>Purchase Price (₹)</strong></label>
+
+                <input
+                    type="number"
+                    name="purchase_price"
+                    class="form-control"
+                    step="0.01"
+                    min="0"
+                    required>
+
+            </div>
+
+            <br>
+
+            <button type="submit" class="login-btn">
+
+                <i class="fas fa-cart-plus"></i>
+
+                Save Purchase
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

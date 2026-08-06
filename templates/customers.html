@@ -1,0 +1,117 @@
+{% include 'header.html' %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+
+        <h1>Customer Management</h1>
+
+        <p>Manage all your customers from one place.</p>
+
+    </div>
+
+    <div class="profile-card">
+
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+
+            <h2>Customer List</h2>
+
+            <a href="{{ url_for('customers.add_customer') }}" class="action-btn" style="width:180px;text-align:center;">
+
+                <i class="fas fa-user-plus"></i>
+
+                <br><br>
+
+                Add Customer
+
+            </a>
+
+        </div>
+
+        <br>
+
+        <table class="customer-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>GST No.</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% if customers %}
+
+                {% for customer in customers %}
+
+                <tr>
+
+                    <td>{{ customer.id }}</td>
+
+                    <td>{{ customer.customer_name }}</td>
+
+                    <td>{{ customer.mobile }}</td>
+
+                    <td>{{ customer.email or "-" }}</td>
+
+                    <td>{{ customer.gst_number or "-" }}</td>
+
+                    <td>
+
+                        <a href="{{ url_for('customers.edit_customer', id=customer.id) }}" class="action-btn"
+                            style="padding:8px 12px;display:inline-block;">
+
+                            <i class="fas fa-edit"></i>
+
+                        </a>
+
+                        <a href="{{ url_for('customers.delete_customer', id=customer.id) }}" class="action-btn"
+                            style="background:#dc3545;padding:8px 12px;display:inline-block;"
+                            onclick="return confirm('Delete this customer?')">
+
+                            <i class="fas fa-trash"></i>
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+                {% else %}
+
+                <tr>
+
+                    <td colspan="6" style="text-align:center;padding:40px;">
+
+                        <i class="fas fa-users" style="font-size:40px;color:#999;"></i>
+
+                        <br><br>
+
+                        No customers have been added yet.
+
+                    </td>
+
+                </tr>
+
+                {% endif %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

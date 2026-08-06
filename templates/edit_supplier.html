@@ -1,0 +1,60 @@
+{% include 'header.html' %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>Edit Supplier</h1>
+        <p>Update supplier details.</p>
+    </div>
+
+    <div class="profile-card">
+
+        <form method="POST">
+
+            <div class="input-group">
+                <label>Supplier Name</label>
+                <input type="text"
+                       name="supplier_name"
+                       value="{{ supplier.supplier_name }}"
+                       required>
+            </div>
+
+            <div class="input-group">
+                <label>Mobile</label>
+                <input type="text"
+                       name="mobile"
+                       value="{{ supplier.mobile }}">
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email"
+                       name="email"
+                       value="{{ supplier.email }}">
+            </div>
+
+            <div class="input-group">
+                <label>Address</label>
+                <textarea name="address">{{ supplier.address }}</textarea>
+            </div>
+
+            <div class="input-group">
+                <label>GST Number</label>
+                <input type="text"
+                       name="gst_number"
+                       value="{{ supplier.gst_number }}">
+            </div>
+
+            <br>
+
+            <button type="submit" class="login-btn">
+                Update Supplier
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}
