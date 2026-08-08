@@ -104,7 +104,9 @@ env\Scripts\activate
 source env/bin/activate
 ```
 
-### Install Dependencies
+### Install Project Requirements
+
+After activating the virtual environment, install all required Python dependencies using the `requirements.txt` file:
 
 ```bash
 pip install -r requirements.txt
@@ -116,13 +118,14 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Open your browser and visit:
+### Open in Browser
 
-```
+After starting the Flask server, open:
+
+```text
 http://127.0.0.1:5000
 ```
 
----
 
 ## 📸 Screenshots
 
